@@ -1,3 +1,4 @@
+name: Sync to Bucket
 on: push
 jobs:
   sync-to-s3:
@@ -17,11 +18,11 @@ jobs:
           aws-secret-access-key: ${{ secrets.SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.REGION }}
 
-      # - name: Sync to S3
-      #   run: |
-      #     aws s3 sync . s3://${{ secrets.S3_BUCKET }} \
-      #       --delete \
-      #       --exclude ".git/*" \
-      #       --exclude ".github/*" \
-      #       --exclude "README.md" \
-      #       --exclude ".gitignore"
+      - name: Sync to S3
+        run: |
+          aws s3 sync . s3://${{ secrets.S3_BUCKET }} \
+            --delete \
+            --exclude ".git/*" \
+            --exclude ".github/*" \
+            --exclude "README.md" \
+            --exclude ".gitignore"
