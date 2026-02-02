@@ -19,6 +19,8 @@ jobs:
           aws-region: ${{ secrets.REGION }}
 
       - name: Sync to S3
+        env:
+          AWS_REQUEST_CHECKSUM_CALCULATION: "when_required"
         run: |
           aws s3 sync . s3://${{ secrets.S3_BUCKET }} \
             --delete \
