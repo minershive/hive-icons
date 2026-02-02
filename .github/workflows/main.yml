@@ -21,6 +21,7 @@ jobs:
       - name: Sync to S3
         env:
           AWS_REQUEST_CHECKSUM_CALCULATION: "when_required"
+          AWS_ENDPOINT_URL_S3: https://storage.googleapis.com
         run: |
           aws s3 sync . s3://${{ secrets.S3_BUCKET }} \
             --delete \
